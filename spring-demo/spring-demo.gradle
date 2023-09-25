@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.springframeworkdemo'
+version = '6.1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/group/public" }
+    maven { url "https://maven.aliyun.com/nexus/content/repositories/jcenter" }
+    mavenCentral()
+}
+
+dependencies {
+    api(project(":spring-aop"))
+    api(project(":spring-beans"))
+    api(project(":spring-core"))
+    api(project(":spring-context"))
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
