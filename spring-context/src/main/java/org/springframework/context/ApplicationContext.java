@@ -27,22 +27,28 @@ import org.springframework.lang.Nullable;
  * Central interface to provide configuration for an application.
  * This is read-only while the application is running, but may be
  * reloaded if the implementation supports this.
- *
+ * 此接口为应用程序提供配置。程序运行时是只读的，如果实现类支持此接口，程序运行时可能会重新加载配置。
  * <p>An ApplicationContext provides:
  * <ul>
  * <li>Bean factory methods for accessing application components.
  * Inherited from {@link org.springframework.beans.factory.ListableBeanFactory}.
+ * 用于访问应用程序组件的bean工厂方法继承自ListableBeanFactory
  * <li>The ability to load file resources in a generic fashion.
  * Inherited from the {@link org.springframework.core.io.ResourceLoader} interface.
+ * 以通用方式加载文件资源的能力继承自ResourceLoader接口
  * <li>The ability to publish events to registered listeners.
  * Inherited from the {@link ApplicationEventPublisher} interface.
+ * 将事件发布到已注册监听器的能力继承自ApplicationEventPublisher接口
  * <li>The ability to resolve messages, supporting internationalization.
  * Inherited from the {@link MessageSource} interface.
+ * 解析消息支持国际化的能力继承自MessageSource接口
  * <li>Inheritance from a parent context. Definitions in a descendant context
  * will always take priority. This means, for example, that a single parent
  * context can be used by an entire web application, while each servlet has
  * its own child context that is independent of that of any other servlet.
  * </ul>
+ * 从父context进行继承，子context的定义将始终优先。这意味着，单个的父context可以被整个web应用程序使用，
+ * 然而每个servlet都有自己的子context，独立于其他的servlet
  *
  * <p>In addition to standard {@link org.springframework.beans.factory.BeanFactory}
  * lifecycle capabilities, ApplicationContext implementations detect and invoke
