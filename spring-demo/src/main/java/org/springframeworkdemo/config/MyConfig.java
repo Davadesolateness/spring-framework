@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023/9/20 16:59
  * @version 1.0
  */
-@Configuration
+//@Configuration
 public class MyConfig {
 }

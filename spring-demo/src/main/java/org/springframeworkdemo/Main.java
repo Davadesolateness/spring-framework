@@ -1,10 +1,10 @@
 package org.springframeworkdemo;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.env.PropertySourcesPropertyResolver;
-import org.springframework.util.PropertyPlaceholderHelper;
 import org.springframeworkdemo.bean.SimpleBean;
-import org.springframeworkdemo.propertysource.PropertySourceTest;
+import org.springframeworkdemo.context.cache.CacheService;
+import org.springframeworkdemo.context.cacheTest.CacheTest;
 
 /**
  * @description: TODO
@@ -14,13 +14,26 @@ import org.springframeworkdemo.propertysource.PropertySourceTest;
  */
 public class Main {
 	public static void main(String[] args) {
-		PropertySourceTest.testStandardEnvironment();
+		//PropertySourceTest.testStandardEnvironment();
+		Main.startAnnotationConfigBean();
+	}
+
+	public static void startClassPathXmlBean(){
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+		System.out.println("bean count is " + context.getBeanDefinitionCount());
+		SimpleBean bean = context.getBean(SimpleBean.class);
+		bean.send();
+		CacheService cacheService = context.getBean(CacheService.class);
+		cacheService.getCacheList("111");
+		cacheService.getCacheList("222");
+		cacheService.getCacheList("111");
 
 	}
 
-	public static void startBean(){
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
-		SimpleBean bean = context.getBean(SimpleBean.class);
-		bean.send();
+	public static void startAnnotationConfigBean(){
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("org.springframeworkdemo");
+		String[] beans = context.getBeanDefinitionNames();
+		System.out.println("beans is " + beans.toString());
+		CacheTest.cacheableTest(context);
 	}
 }
